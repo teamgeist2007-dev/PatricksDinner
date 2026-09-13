@@ -9,7 +9,10 @@ html {
 body {
   margin: 0;
   min-width: 320px;
+  min-height: 100vh;
   font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
 }
 
 .header {
@@ -40,6 +43,7 @@ body {
 
 main {
   width: 100%;
+  flex: 1;
 }
 
 .restaurantHero {
@@ -75,4 +79,39 @@ main {
   margin-top: -20px;
   margin-left: -20px;
   object-fit: cover;
+}
+
+.footer {
+  width: 100%;
+  height: 80px;
+  padding: 15px 30px;
+  background-color: #2e76c1;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+}
+
+.footerLogo {
+  width: 93px;
+  height: 38px;
+}
+
+.footer p {
+  margin: auto;
+}
+
+.footerLinks {
+  display: flex;
+  gap: 20px;
+}
+
+.footerLinks a {
+  color: white;
+  text-decoration: none;
+}
+
+.footerLinks a:hover {
+  text-decoration: underline;
 }
