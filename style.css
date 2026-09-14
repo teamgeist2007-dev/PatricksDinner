@@ -23,8 +23,10 @@ body {
 
 .headerContent {
   width: 100%;
+  max-width: 1440px;
   height: 100%;
-  padding-left: 119px;
+  margin: 0 auto;
+  padding-left: 40px;
   padding-right: 40px;
   display: flex;
   align-items: center;
@@ -56,6 +58,7 @@ main {
 .heroImage {
   display: block;
   width: 100%;
+  max-width: none;
   height: 508px;
   object-fit: cover;
 }
@@ -81,39 +84,74 @@ main {
   object-fit: cover;
 }
 
-/* Bereich für Pizzen und Warenkorb */
+/* Warenkorb */
 
 .menuArea {
-  max-width: 1250px;
-  margin: auto;
-  padding: 0 30px 50px 30px;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 25px 30px 50px 30px;
   display: flex;
   align-items: flex-start;
   gap: 30px;
 }
 
-/* Pizzen */
-
 .dishes {
   flex: 1;
 }
 
-.dishes h2 {
-  margin-top: 0;
-  margin-bottom: 20px;
-  padding: 15px 20px;
+.pizzaSection {
+  width: 100%;
+}
+
+.pizzaHeadline {
+  width: 100%;
   background-color: #2e76c1;
+}
+
+.pizzaHeadlineContent {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 15px 30px;
+}
+
+.pizzaHeadline h2 {
+  margin: 0;
   color: white;
   font-size: 30px;
 }
 
+.menuArea {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 25px 30px 50px 30px;
+  display: flex;
+  align-items: flex-start;
+  gap: 30px;
+}
+
+.dishes {
+  flex: 1;
+  min-width: 0;
+}
+
+#dishes-list {
+  width: 100%;
+}
+
+/* Pizzabox */
+
 .dishCard {
   position: relative;
+  width: 100%;
   min-height: 150px;
   margin-bottom: 15px;
   padding: 10px;
   border: 1px solid #cccccc;
   border-radius: 10px;
+  background-color: #ffecdf;
   display: flex;
   align-items: center;
 }
@@ -367,41 +405,36 @@ main {
 /* Handy */
 
 @media screen and (max-width: 767px) {
-  body {
-    padding-bottom: 78px;
+  .pizzaHeadlineContent {
+    padding: 12px 16px;
   }
 
-  .mobileNavigation {
-    position: fixed;
-    z-index: 10;
-    left: 0;
-    bottom: 0;
+  .pizzaHeadline h2 {
+    font-size: 24px;
+  }
+
+  .menuArea {
+    display: block;
+    padding: 20px 16px 30px 16px;
+  }
+
+  .dishCard {
+    display: block;
+  }
+
+  .dishImage {
     width: 100%;
-    height: 78px;
-    padding: 24px 25px;
-    background-color: #363534;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    height: 180px;
   }
 
-  .navigationButton {
-    width: 30px;
-    height: 30px;
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  .dishInfo {
+    padding: 15px 0 60px 0;
   }
 
-  .navigationButton img {
-    width: 30px;
-    height: 30px;
-    object-fit: contain;
-  }
-
-  .activeButton {
-    background-color: #2e76c1;
+  .basket {
+    position: static;
+    width: 100%;
+    margin-top: 30px;
   }
 }
 
