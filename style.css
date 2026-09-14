@@ -50,7 +50,7 @@ main {
   position: relative;
   width: 100%;
   height: 508px;
-  margin-bottom: 100px;
+  margin-bottom: 120px;
 }
 
 .heroImage {
@@ -81,23 +81,30 @@ main {
   object-fit: cover;
 }
 
-.dishes {
-  width: 100%;
+/* Bereich für Pizzen und Warenkorb */
+
+.menuArea {
+  max-width: 1250px;
+  margin: auto;
   padding: 0 30px 50px 30px;
+  display: flex;
+  align-items: flex-start;
+  gap: 30px;
+}
+
+/* Pizzen */
+
+.dishes {
+  flex: 1;
 }
 
 .dishes h2 {
-  max-width: 900px;
-  margin: 0 auto 20px auto;
+  margin-top: 0;
+  margin-bottom: 20px;
   padding: 15px 20px;
   background-color: #2e76c1;
   color: white;
-  font-size: 32px;
-}
-
-#dishes-list {
-  max-width: 900px;
-  margin: auto;
+  font-size: 30px;
 }
 
 .dishCard {
@@ -111,7 +118,7 @@ main {
   align-items: center;
 }
 
-.dishCard img {
+.dishImage {
   width: 160px;
   height: 130px;
   border-radius: 8px;
@@ -119,20 +126,22 @@ main {
 }
 
 .dishInfo {
-  padding: 15px 60px 15px 20px;
+  padding: 15px 150px 15px 20px;
 }
 
 .dishInfo h3 {
-  margin: 0 0 10px 0;
+  margin-top: 0;
+  margin-bottom: 10px;
   font-size: 22px;
 }
 
 .dishInfo p {
-  margin: 0 0 15px 0;
+  margin-top: 0;
+  margin-bottom: 15px;
   color: #555555;
 }
 
-.dishInfo strong {
+.dishPrice {
   font-size: 18px;
 }
 
@@ -146,7 +155,7 @@ main {
   border-radius: 8px;
   background-color: #2e76c1;
   color: white;
-  font-size: 16px;
+  font-size: 15px;
   cursor: pointer;
 }
 
@@ -154,16 +163,132 @@ main {
   background-color: #245f9d;
 }
 
+/* Warenkorb */
+
+.basket {
+  position: sticky;
+  top: 20px;
+  width: 340px;
+  flex-shrink: 0;
+  padding: 16px;
+  border-radius: 16px;
+  background-color: #333332;
+  color: white;
+}
+
+.basket h2 {
+  margin-top: 5px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 22px;
+}
+
+.emptyBasket {
+  padding: 30px 10px;
+  text-align: center;
+  color: #dddddd;
+}
+
+.basketItem {
+  min-height: 100px;
+  margin-bottom: 10px;
+  padding: 12px;
+  border-radius: 12px;
+  background-color: #ffecdf;
+  color: #222222;
+}
+
+.basketItemName {
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 15px;
+}
+
+.basketItemBottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.amountButtons {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.amountButton {
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: 20px;
+  background-color: #2e76c1;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.amountButton:hover {
+  background-color: #245f9d;
+}
+
+.deleteButton {
+  height: 28px;
+  border: none;
+  background-color: transparent;
+  color: #bb2222;
+  cursor: pointer;
+}
+
+.basketPrice {
+  font-weight: bold;
+}
+
+.basketCalculation {
+  margin-top: 20px;
+}
+
+.calculationRow {
+  min-height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.totalRow {
+  margin-top: 8px;
+  padding-top: 10px;
+  border-top: 2px solid white;
+  font-weight: bold;
+}
+
+.buyButton {
+  width: 100%;
+  height: 64px;
+  margin-top: 15px;
+  border: none;
+  border-radius: 60px;
+  background-color: #2e76c1;
+  color: white;
+  font-size: 22px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.buyButton:hover {
+  background-color: #245f9d;
+}
+
+/* Footer */
+
 .footer {
   width: 100%;
-  height: 80px;
+  min-height: 80px;
   padding: 15px 30px;
   background-color: #2e76c1;
   color: white;
   display: flex;
   align-items: center;
   justify-content: space-between;
-
 }
 
 .footerLogo {
@@ -172,7 +297,7 @@ main {
 }
 
 .footer p {
-  margin: auto;
+  margin: 0;
 }
 
 .footerLinks {
@@ -187,4 +312,203 @@ main {
 
 .footerLinks a:hover {
   text-decoration: underline;
+}
+
+.mobileNavigation {
+  display: none;
+}
+
+/* kleine Bildschirmen */
+
+@media (max-width: 900px) {
+  .headerContent {
+    padding-left: 30px;
+    padding-right: 20px;
+  }
+
+  .menuArea {
+    display: block;
+  }
+
+  .basket {
+    position: static;
+    width: 100%;
+    margin-top: 30px;
+  }
+}
+
+@media (max-width: 600px) {
+  .header {
+    height: 90px;
+  }
+
+  .restaurantHero {
+    height: 300px;
+  }
+
+  .heroImage {
+    height: 300px;
+  }
+
+  .dishCard {
+    display: block;
+  }
+
+  .dishImage {
+    width: 100%;
+    height: 180px;
+  }
+
+  .dishInfo {
+    padding: 15px 0 60px 0;
+  }
+}
+
+/* Handy */
+
+@media screen and (max-width: 767px) {
+  body {
+    padding-bottom: 78px;
+  }
+
+  .mobileNavigation {
+    position: fixed;
+    z-index: 10;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 78px;
+    padding: 24px 25px;
+    background-color: #363534;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .navigationButton {
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .navigationButton img {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+  }
+
+  .activeButton {
+    background-color: #2e76c1;
+  }
+}
+
+
+/* Tablet */
+
+@media screen and (min-width: 768px) and (max-width: 1280px) {
+  .header {
+    height: 100px;
+  }
+
+  .headerContent {
+    max-width: 980px;
+    margin: 0 auto;
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
+  .headerLogo {
+    width: 90px;
+    height: 38px;
+  }
+
+  .menuIcon {
+    width: 50px;
+    height: 50px;
+  }
+
+  .restaurantHero {
+    height: 400px;
+    margin-bottom: 110px;
+  }
+
+  .heroImage {
+    height: 400px;
+  }
+
+  .logoCircle {
+    width: 180px;
+    height: 180px;
+    bottom: -90px;
+    margin-left: -90px;
+  }
+
+  .restaurantLogo {
+    width: 216px;
+    height: 216px;
+    margin-top: -18px;
+    margin-left: -18px;
+  }
+
+  .menuArea {
+    max-width: 980px;
+    gap: 24px;
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
+  .dishImage {
+    width: 140px;
+    height: 120px;
+  }
+
+  .dishInfo {
+    padding: 15px 130px 15px 15px;
+  }
+
+  .basket {
+    width: 320px;
+  }
+
+  .footer {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+}
+
+
+/* Desktop */
+
+@media screen and (min-width: 1281px) {
+  .header {
+    height: 128px;
+  }
+
+  .headerContent {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  .restaurantHero {
+    height: 508px;
+    margin-bottom: 120px;
+  }
+
+  .heroImage {
+    height: 508px;
+  }
+
+  .menuArea {
+    max-width: 1250px;
+    gap: 30px;
+  }
+
+  .basket {
+    width: 340px;
+  }
 }

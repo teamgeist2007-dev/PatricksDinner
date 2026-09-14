@@ -31,12 +31,42 @@
             </div>
         </section>
 
-        <section class="dishes">
-            <h2>Unsere Pizzen</h2>
+        <div class="menuArea">
 
-            <div id="dishes-list"></div>
-        </section>
+            <section class="dishes">
+                <h2>Unsere Pizzen</h2>
+                <div id="dishes-list"></div>
+            </section>
+
+            <aside class="basket" id="basket">
+                <h2>Your Basket</h2>
+
+                <div id="basket-items"></div>
+
+                <div id="basket-calculation"></div>
+            </aside>
+
+        </div>
+
     </main>
+
+    <nav class="mobileNavigation">
+        <a class="navigationButton activeButton" href="#">
+            <img src="./assets/icons/Homebutton.png" alt="Startseite">
+        </a>
+
+        <a class="navigationButton" href="#">
+            <img src="./assets/icons/Profile.png" alt="Profil">
+        </a>
+
+        <a class="navigationButton" href="#">
+            <img src="./assets/icons/orders.png" alt="Bestellungen">
+        </a>
+
+        <a class="navigationButton" href="#basket">
+            <img src="./assets/icons/basket.png" alt="Warenkorb">
+        </a>
+    </nav>
 
     <footer class="footer">
         <img class="footerLogo" src="./assets/icons/logo.png" alt="Bestell App">
