@@ -39,26 +39,52 @@ function renderDishes() {
   dishList.innerHTML = "";
 
   for (let i = 0; i < dishes.length; i++) {
+    let amount = getDishAmount(i);
+    let buttonText = "Add to basket";
+    let buttonClass = "addButton";
+
+    if (amount > 0) {
+      buttonText = "Added " + amount;
+      buttonClass = "addButton addedButton";
+    }
+
     dishList.innerHTML += `
       <div class="dishCard">
-        <img class="dishImage"
+        <img
+          class="dishImage"
           src="${dishes[i].image}"
-          alt="${dishes[i].name}">
+          alt="${dishes[i].name}"
+        >
 
         <div class="dishInfo">
           <h3>${dishes[i].name}</h3>
           <p>${dishes[i].description}</p>
+
           <strong class="dishPrice">
             ${formatPrice(dishes[i].price)}
           </strong>
         </div>
 
-        <button class="addButton" onclick="addToBasket(${i})">
-          Add to basket
+        <button
+          class="${buttonClass}"
+          type="button"
+          onclick="addToBasket(${i})"
+        >
+          ${buttonText}
         </button>
       </div>
     `;
   }
+}
+
+function getDishAmount(dishIndex) {
+  for (let i = 0; i < basket.length; i++) {
+    if (basket[i].dishIndex === dishIndex) {
+      return basket[i].amount;
+    }
+  }
+
+  return 0;
 }
 
 function addToBasket(dishIndex) {
@@ -78,6 +104,7 @@ function addToBasket(dishIndex) {
     });
   }
 
+  renderDishes();
   renderBasket();
 }
 
@@ -104,33 +131,47 @@ function renderBasket() {
 
     basketItems.innerHTML += `
       <div class="basketItem">
-        <h3 class="basketItemName">
-          ${basket[i].amount} x ${dish.name}
-        </h3>
+        <div class="basketItemContent">
 
-        <div class="basketItemBottom">
-          <div class="amountButtons">
-            <button class="amountButton"
-              onclick="decreaseAmount(${i})">
-              -
-            </button>
+          <h3 class="basketItemName">
+            ${basket[i].amount} x ${dish.name}
+          </h3>
 
-            <span>${basket[i].amount}</span>
+          <div class="basketItemBottom">
 
-            <button class="amountButton"
-              onclick="increaseAmount(${i})">
-              +
-            </button>
+            <div class="amountButtons">
+              <button
+                class="amountButton"
+                type="button"
+                onclick="decreaseAmount(${i})"
+              >
+                -
+              </button>
 
-            <button class="deleteButton"
-              onclick="deleteDish(${i})">
-              Löschen
-            </button>
+              <span>${basket[i].amount}</span>
+
+              <button
+                class="amountButton"
+                type="button"
+                onclick="increaseAmount(${i})"
+              >
+                +
+              </button>
+
+              <button
+                class="deleteButton"
+                type="button"
+                onclick="deleteDish(${i})"
+              >
+                Löschen
+              </button>
+            </div>
+
+            <span class="basketPrice">
+              ${formatPrice(itemPrice)}
+            </span>
+
           </div>
-
-          <span class="basketPrice">
-            ${formatPrice(itemPrice)}
-          </span>
         </div>
       </div>
     `;
@@ -158,7 +199,11 @@ function renderBasket() {
         <span>${formatPrice(total)}</span>
       </div>
 
-      <button class="buyButton">
+      <button
+        class="buyButton"
+        type="button"
+        onclick="openOrderDialog()"
+      >
         Buy now (${formatPrice(total)})
       </button>
 
@@ -168,6 +213,8 @@ function renderBasket() {
 
 function increaseAmount(basketIndex) {
   basket[basketIndex].amount++;
+
+  renderDishes();
   renderBasket();
 }
 
@@ -178,11 +225,14 @@ function decreaseAmount(basketIndex) {
     basket.splice(basketIndex, 1);
   }
 
+  renderDishes();
   renderBasket();
 }
 
 function deleteDish(basketIndex) {
   basket.splice(basketIndex, 1);
+
+  renderDishes();
   renderBasket();
 }
 
@@ -200,6 +250,31 @@ function calculateSubtotal() {
 
 function formatPrice(price) {
   return price.toFixed(2).replace(".", ",") + " €";
+}
+
+function toggleBasket() {
+  let basketElement = document.getElementById("basket");
+
+  basketElement.classList.toggle("showBasket");
+}
+
+function openOrderDialog() {
+  let orderDialog = document.getElementById("orderDialog");
+  let basketElement = document.getElementById("basket");
+
+  basketElement.classList.remove("showBasket");
+  orderDialog.showModal();
+
+  basket = [];
+
+  renderDishes();
+  renderBasket();
+}
+
+function closeOrderDialog() {
+  let orderDialog = document.getElementById("orderDialog");
+
+  orderDialog.close();
 }
 
 renderDishes();
