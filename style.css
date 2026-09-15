@@ -156,10 +156,9 @@ main {
 
 .dishImage {
   width: 160px;
-  height: 130px;
+  height: 160px;
   border-radius: 8px;
-  object-fit: cover;
-  flex-shrink: 0;
+  
 }
 
 .dishInfo {
@@ -188,9 +187,6 @@ main {
   position: absolute;
   right: 15px;
   bottom: 15px;
-  height: 40px;
-  padding-left: 15px;
-  padding-right: 15px;
   border: none;
   border-radius: 8px;
   background-color: #2e76c1;

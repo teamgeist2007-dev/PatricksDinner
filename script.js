@@ -7,7 +7,7 @@ const dishes = [
   },
   {
     name: "Pizza Salami",
-    description: "Mit Tomatensoße, Salami und geriebener Käse",
+    description: "Mit Tomatensoße, Salami und geriebenen Käse",
     price: 11.90,
     image: "./assets/img/Pizza Salami.png"
   },
