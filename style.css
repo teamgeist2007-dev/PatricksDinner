@@ -124,7 +124,7 @@ main {
 .restaurantName span {
   padding: 4px 8px;
   border-radius: 4px;
-  background-color: #ffecdf;
+  background-color: #e8f9ff;
   font-size: 14px;
 }
 
@@ -193,7 +193,7 @@ main {
   padding: 10px;
   border: 1px solid #cccccc;
   border-radius: 10px;
-  background-color: #ffecdf;
+  background-color: #e8f9ff;
   display: flex;
   align-items: center;
 }
