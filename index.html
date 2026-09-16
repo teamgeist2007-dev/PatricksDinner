@@ -17,7 +17,6 @@
     <header class="header">
         <div class="headerContent">
             <img class="headerLogo" src="./assets/icons/logo.png" alt="Bestell App">
-
             <img class="menuIcon" src="./assets/icons/menu.png" alt="Menü">
         </div>
     </header>
@@ -60,10 +59,6 @@
                 </div>
 
                 <div class="basket" id="basket">
-                    <button class="basketCloseButton" type="button" onclick="closeBasket()">
-                        ×
-                    </button>
-
                     <h2>Bestellübersicht</h2>
 
                     <div id="basket-items"></div>
@@ -90,9 +85,6 @@
         </div>
     </footer>
 
-    <div class="basketBackdrop" id="basketBackdrop" onclick="closeBasket()">
-    </div>
-
     <nav class="mobileNavigation">
         <a class="navigationButton activeButton" href="#">
             <img src="./assets/icons/Homebutton.png" alt="Startseite">
@@ -106,7 +98,7 @@
             <img src="./assets/icons/orders.png" alt="Bestellungen">
         </a>
 
-        <a class="navigationButton" href="#" onclick="toggleBasket(); return false;">
+        <a class="navigationButton" href="#basket">
             <img src="./assets/icons/basket.png" alt="Warenkorb">
         </a>
     </nav>

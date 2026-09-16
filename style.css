@@ -46,12 +46,10 @@ body {
   object-fit: contain;
 }
 
-
 main {
   width: 100%;
   flex: 1;
 }
-
 
 .restaurantHero {
   position: relative;
@@ -264,10 +262,6 @@ main {
   border-bottom-right-radius: 0;
 }
 
-.basketCloseButton {
-  display: none;
-}
-
 .basket h2 {
   width: 178px;
   height: 41px;
@@ -297,11 +291,7 @@ main {
   padding: 16px 20px;
   background-color: #ffecdf;
   color: #222222;
-
-  border-top-left-radius: 16px;
-  border-top-right-radius: 16px;
-  border-bottom-left-radius: 16px;
-  border-bottom-right-radius: 16px;
+  border-radius: 16px;
 }
 
 .basketItemContent {
@@ -358,7 +348,6 @@ main {
   height: 26px;
   font-weight: bold;
 }
-
 
 #basket-calculation {
   width: 340px;
@@ -451,10 +440,6 @@ main {
 
 .footerLinks a:hover {
   text-decoration: underline;
-}
-
-.basketBackdrop {
-  display: none;
 }
 
 /* Mobile Navigation */
@@ -605,10 +590,10 @@ main {
   }
 
   .restaurantHero {
-    width: auto;
+    width: 100%;
     height: 420px;
-    margin-left: 16px;
-    margin-right: 16px;
+    margin-left: 0;
+    margin-right: 0;
     margin-bottom: 80px;
   }
 
@@ -682,30 +667,15 @@ main {
     position: fixed;
     z-index: 50;
     top: 20px;
-    right: 17px;
+    right: 0;
     width: 340px;
     height: 660px;
+    max-height: calc(100vh - 40px);
     margin: 0;
     padding: 38px 20px 39px 20px;
-    gap: 16px;
-    display: none;
     overflow-y: auto;
-  }
-
-  .basket.showBasket {
     display: flex;
-  }
-
-  .basketCloseButton {
-    position: absolute;
-    top: 5px;
-    right: 8px;
-    display: block;
-    border: none;
-    background-color: transparent;
-    color: white;
-    font-size: 20px;
-    cursor: pointer;
+    gap: 16px;
   }
 
   .basket h2 {
@@ -761,25 +731,8 @@ main {
     font-size: 16px;
   }
 
-  .basketBackdrop.showBackdrop {
-    position: fixed;
-    z-index: 40;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    display: block;
-    background-color: rgba(0, 0, 0, 0.45);
-  }
-
   .footer {
-    padding: 20px 16px;
-  }
-
-  .footerContent {
-    min-height: auto;
-    flex-direction: column;
-    gap: 15px;
+    display: none;
   }
 
   .mobileNavigation {
@@ -815,7 +768,6 @@ main {
     background-color: #2e76c1;
   }
 
-
   .orderDialog {
     width: 340px;
     height: 255px;
@@ -839,14 +791,17 @@ main {
   }
 }
 
+/* Sehr kleine Bildschirme */
 
 @media screen and (max-width: 340px) {
   .basket {
+    top: 0;
     right: 0;
     width: 100%;
-    height: auto;
-    max-height: 90vh;
+    height: 100vh;
+    max-height: 100vh;
     padding: 30px 16px;
+    border-radius: 0;
   }
 
   .basket h2 {
