@@ -16,8 +16,6 @@ body {
   flex-direction: column;
 }
 
-/* Header */
-
 .header {
   width: 100%;
   height: 128px;
@@ -48,14 +46,12 @@ body {
   object-fit: contain;
 }
 
-/* Hauptbereich */
 
 main {
   width: 100%;
   flex: 1;
 }
 
-/* Panoramabild */
 
 .restaurantHero {
   position: relative;
@@ -91,8 +87,6 @@ main {
   margin-left: -20px;
   object-fit: cover;
 }
-
-/* Informationen zur Pizzeria */
 
 .restaurantInformation {
   width: 100%;
@@ -138,8 +132,6 @@ main {
   text-align: center;
 }
 
-/* Blauer Überschriftenstreifen */
-
 .pizzaSection {
   width: 100%;
 }
@@ -162,8 +154,6 @@ main {
   font-size: 30px;
 }
 
-/* Gerichte und Warenkorb */
-
 .menuArea {
   width: 100%;
   max-width: 1440px;
@@ -182,8 +172,6 @@ main {
 #dishes-list {
   width: 100%;
 }
-
-/* Pizzaboxen */
 
 .dishCard {
   position: relative;
@@ -228,8 +216,6 @@ main {
   font-size: 18px;
 }
 
-/* Add-to-basket-Button */
-
 .addButton {
   position: absolute;
   right: 15px;
@@ -257,8 +243,6 @@ main {
   background-color: #2e76c1;
 }
 
-/* Bestellübersicht */
-
 .basket {
   position: sticky;
   z-index: 5;
@@ -278,6 +262,10 @@ main {
   border-bottom-left-radius: 16px;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
+}
+
+.basketCloseButton {
+  display: none;
 }
 
 .basket h2 {
@@ -369,10 +357,8 @@ main {
   width: 67px;
   height: 26px;
   font-weight: bold;
-  
 }
 
-/* Berechnung */
 
 #basket-calculation {
   width: 340px;
@@ -401,8 +387,6 @@ main {
   border-top: 2px solid white;
   font-weight: bold;
 }
-
-/* Bestellbutton */
 
 .buyButton {
   display: block;
@@ -467,6 +451,10 @@ main {
 
 .footerLinks a:hover {
   text-decoration: underline;
+}
+
+.basketBackdrop {
+  display: none;
 }
 
 /* Mobile Navigation */
@@ -617,26 +605,31 @@ main {
   }
 
   .restaurantHero {
-    height: 280px;
-    margin-bottom: 90px;
+    width: auto;
+    height: 420px;
+    margin-left: 16px;
+    margin-right: 16px;
+    margin-bottom: 80px;
   }
 
   .heroImage {
-    height: 280px;
+    width: 100%;
+    height: 420px;
   }
 
   .logoCircle {
-    width: 140px;
-    height: 140px;
-    bottom: -70px;
-    margin-left: -70px;
+    width: 120px;
+    height: 120px;
+    bottom: -60px;
+    margin-left: -60px;
+    border: 13px solid #fdeadc;
   }
 
   .restaurantLogo {
-    width: 168px;
-    height: 168px;
-    margin-top: -14px;
-    margin-left: -14px;
+    width: 120px;
+    height: 120px;
+    margin-top: -13px;
+    margin-left: -13px;
   }
 
   .restaurantName {
@@ -663,8 +656,10 @@ main {
   }
 
   .menuArea {
-    display: block;
-    padding: 20px 16px 30px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    padding: 24px 16px 30px 16px;
   }
 
   .dishCard {
@@ -681,21 +676,100 @@ main {
     padding: 15px 0 60px 0;
   }
 
+  /* Mobiler Warenkorb */
+
   .basket {
     position: fixed;
     z-index: 50;
     top: 20px;
-    right: 0;
-    width: 435px;
-    max-width: 100%;
+    right: 17px;
+    width: 340px;
+    height: 660px;
     margin: 0;
+    padding: 38px 20px 39px 20px;
+    gap: 16px;
     display: none;
-    max-height: 90vh;
     overflow-y: auto;
   }
 
   .basket.showBasket {
     display: flex;
+  }
+
+  .basketCloseButton {
+    position: absolute;
+    top: 5px;
+    right: 8px;
+    display: block;
+    border: none;
+    background-color: transparent;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+  }
+
+  .basket h2 {
+    width: 300px;
+    height: 41px;
+    line-height: 41px;
+  }
+
+  #basket-items {
+    width: 300px;
+    height: 355px;
+  }
+
+  .emptyBasket {
+    width: 300px;
+  }
+
+  .basketItem {
+    width: 300px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .basketItemContent {
+    width: 280px;
+  }
+
+  .basketItemName {
+    width: 280px;
+  }
+
+  .basketItemBottom {
+    width: 280px;
+  }
+
+  #basket-calculation {
+    width: 300px;
+    height: 155px;
+  }
+
+  .basketCalculation {
+    width: 300px;
+    height: 155px;
+  }
+
+  .calculationRow {
+    width: 300px;
+  }
+
+  .buyButton {
+    width: 246px;
+    height: 50px;
+    font-size: 16px;
+  }
+
+  .basketBackdrop.showBackdrop {
+    position: fixed;
+    z-index: 40;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: block;
+    background-color: rgba(0, 0, 0, 0.45);
   }
 
   .footer {
@@ -710,7 +784,7 @@ main {
 
   .mobileNavigation {
     position: fixed;
-    z-index: 60;
+    z-index: 30;
     left: 0;
     bottom: 0;
     width: 100%;
@@ -741,26 +815,42 @@ main {
     background-color: #2e76c1;
   }
 
+
   .orderDialog {
-    width: 280px;
-    padding: 25px 20px;
+    width: 340px;
+    height: 255px;
+    padding: 32px 32px 40px 32px;
+    border-radius: 30px;
+  }
+
+  .closeDialogButton {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    margin: 0;
+  }
+
+  .deliveryIcon {
+    margin-bottom: 5px;
+  }
+
+  .orderDialog p {
+    margin-bottom: 10px;
   }
 }
 
-/* Bis 480px */
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 340px) {
   .basket {
+    right: 0;
     width: 100%;
     height: auto;
+    max-height: 90vh;
     padding: 30px 16px;
-    gap: 20px;
   }
 
   .basket h2 {
     width: 100%;
-    height: auto;
-    line-height: normal;
   }
 
   #basket-items {
@@ -775,8 +865,6 @@ main {
 
   .basketItem {
     width: 100%;
-    padding-left: 10px;
-    padding-right: 10px;
   }
 
   .basketItemContent {
@@ -807,8 +895,11 @@ main {
 
   .buyButton {
     width: 100%;
-    height: 64px;
-    margin-top: 15px;
-    font-size: 20px;
+  }
+
+  .orderDialog {
+    width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
   }
 }

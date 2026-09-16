@@ -60,6 +60,10 @@
                 </div>
 
                 <div class="basket" id="basket">
+                    <button class="basketCloseButton" type="button" onclick="closeBasket()">
+                        ×
+                    </button>
+
                     <h2>Bestellübersicht</h2>
 
                     <div id="basket-items"></div>
@@ -85,6 +89,9 @@
             </div>
         </div>
     </footer>
+
+    <div class="basketBackdrop" id="basketBackdrop" onclick="closeBasket()">
+    </div>
 
     <nav class="mobileNavigation">
         <a class="navigationButton activeButton" href="#">
