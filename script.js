@@ -1,19 +1,19 @@
 const dishes = [
   {
     name: "Pizza Margherita",
-    description: "Mit Tomatensoße, Morzarella, und Basilikum",
+    description: "Mit Tomatensoße, Mozzarella und Basilikum",
     price: 9.90,
     image: "./assets/img/Pizza Margherita.png"
   },
   {
     name: "Pizza Salami",
-    description: "Mit Tomatensoße, Salami und geriebenen Käse",
+    description: "Mit Tomatensoße, Salami und geriebenem Käse",
     price: 11.90,
     image: "./assets/img/Pizza Salami.png"
   },
   {
     name: "Pizza Funghi",
-    description: "Mit Tomatensoße, frischen Champignons und geriebenen Käse",
+    description: "Mit Tomatensoße, frischen Champignons und geriebenem Käse",
     price: 10.90,
     image: "./assets/img/Pizza Funghi.png"
   },
@@ -25,7 +25,7 @@ const dishes = [
   },
   {
     name: "Pizza Quattro Formaggi",
-    description: "Mit Tomatensoße, Mozzarella, Gorgonzola, Parmesan und Fontina ",
+    description: "Mit Tomatensoße, Mozzarella, Gorgonzola, Parmesan und Fontina",
     price: 11.90,
     image: "./assets/img/Pizza Quattro Formaggi.png"
   }
@@ -33,6 +33,8 @@ const dishes = [
 
 let basket = [];
 
+
+// Diese Funktion zeigt alle Gerichte auf der Webseite an.
 function renderDishes() {
   let dishList = document.getElementById("dishes-list");
 
@@ -77,6 +79,8 @@ function renderDishes() {
   }
 }
 
+
+// Diese Funktion gibt zurück, wie oft ein Gericht im Warenkorb liegt.
 function getDishAmount(dishIndex) {
   for (let i = 0; i < basket.length; i++) {
     if (basket[i].dishIndex === dishIndex) {
@@ -87,6 +91,8 @@ function getDishAmount(dishIndex) {
   return 0;
 }
 
+
+// Diese Funktion fügt ein Gericht zum Warenkorb hinzu.
 function addToBasket(dishIndex) {
   let dishAlreadyInBasket = false;
 
@@ -108,6 +114,8 @@ function addToBasket(dishIndex) {
   renderBasket();
 }
 
+
+// Diese Funktion zeigt den aktuellen Inhalt des Warenkorbs an.
 function renderBasket() {
   let basketItems = document.getElementById("basket-items");
   let basketCalculation = document.getElementById("basket-calculation");
@@ -211,6 +219,8 @@ function renderBasket() {
   `;
 }
 
+
+// Diese Funktion erhöht die Anzahl eines Gerichts um eins.
 function increaseAmount(basketIndex) {
   basket[basketIndex].amount++;
 
@@ -218,6 +228,9 @@ function increaseAmount(basketIndex) {
   renderBasket();
 }
 
+
+// Diese Funktion verringert die Anzahl eines Gerichts um eins.
+// Wenn die Anzahl null erreicht, wird das Gericht entfernt.
 function decreaseAmount(basketIndex) {
   basket[basketIndex].amount--;
 
@@ -229,6 +242,8 @@ function decreaseAmount(basketIndex) {
   renderBasket();
 }
 
+
+// Diese Funktion entfernt ein Gericht vollständig aus dem Warenkorb.
 function deleteDish(basketIndex) {
   basket.splice(basketIndex, 1);
 
@@ -236,6 +251,8 @@ function deleteDish(basketIndex) {
   renderBasket();
 }
 
+
+// Diese Funktion berechnet die Zwischensumme aller Gerichte.
 function calculateSubtotal() {
   let subtotal = 0;
 
@@ -248,16 +265,23 @@ function calculateSubtotal() {
   return subtotal;
 }
 
+
+// Diese Funktion wandelt eine Zahl in einen deutschen Preis um.
+// Aus 9.9 wird zum Beispiel 9,90 €.
 function formatPrice(price) {
   return price.toFixed(2).replace(".", ",") + " €";
 }
 
+
+// Diese Funktion öffnet oder schließt den Warenkorb auf dem Handy.
 function toggleBasket() {
   let basketElement = document.getElementById("basket");
 
   basketElement.classList.toggle("showBasket");
 }
 
+
+// Diese Funktion öffnet das Bestellfenster und leert den Warenkorb.
 function openOrderDialog() {
   let orderDialog = document.getElementById("orderDialog");
   let basketElement = document.getElementById("basket");
@@ -271,11 +295,15 @@ function openOrderDialog() {
   renderBasket();
 }
 
+
+// Diese Funktion schließt das Bestellfenster.
 function closeOrderDialog() {
   let orderDialog = document.getElementById("orderDialog");
 
   orderDialog.close();
 }
 
+
+// Diese beiden Funktionen werden beim Laden der Seite ausgeführt.
 renderDishes();
 renderBasket();
