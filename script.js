@@ -267,7 +267,6 @@ function calculateSubtotal() {
 
 
 // Diese Funktion wandelt eine Zahl in einen deutschen Preis um.
-// Aus 9.9 wird zum Beispiel 9,90 €.
 function formatPrice(price) {
   return price.toFixed(2).replace(".", ",") + " €";
 }
@@ -277,16 +276,39 @@ function formatPrice(price) {
 function toggleBasket() {
   let basketElement = document.getElementById("basket");
 
-  basketElement.classList.toggle("showBasket");
+  if (basketElement.classList.contains("showBasket")) {
+    closeBasket();
+  } else {
+    openBasket();
+  }
+}
+
+
+// Diese Funktion öffnet den Warenkorb und zeigt den Hintergrund.
+function openBasket() {
+  let basketElement = document.getElementById("basket");
+  let basketBackdrop = document.getElementById("basketBackdrop");
+
+  basketElement.classList.add("showBasket");
+  basketBackdrop.classList.add("showBackdrop");
+}
+
+
+// Diese Funktion schließt den Warenkorb und den Hintergrund.
+function closeBasket() {
+  let basketElement = document.getElementById("basket");
+  let basketBackdrop = document.getElementById("basketBackdrop");
+
+  basketElement.classList.remove("showBasket");
+  basketBackdrop.classList.remove("showBackdrop");
 }
 
 
 // Diese Funktion öffnet das Bestellfenster und leert den Warenkorb.
 function openOrderDialog() {
   let orderDialog = document.getElementById("orderDialog");
-  let basketElement = document.getElementById("basket");
 
-  basketElement.classList.remove("showBasket");
+  closeBasket();
   orderDialog.showModal();
 
   basket = [];
