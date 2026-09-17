@@ -92,6 +92,25 @@ function getDishAmount(dishIndex) {
 }
 
 
+// Diese Funktion zeigt die Produktanzahl am Warenkorb-Symbol.
+function updateBasketCount() {
+  let basketCount = document.getElementById("basket-count");
+  let totalAmount = 0;
+
+  for (let i = 0; i < basket.length; i++) {
+    totalAmount = totalAmount + basket[i].amount;
+  }
+
+  basketCount.innerHTML = totalAmount;
+
+  if (totalAmount > 0) {
+    basketCount.classList.add("showBasketCount");
+  } else {
+    basketCount.classList.remove("showBasketCount");
+  }
+}
+
+
 // Diese Funktion fügt ein Gericht zum Warenkorb hinzu.
 function addToBasket(dishIndex) {
   let dishAlreadyInBasket = false;
@@ -122,6 +141,8 @@ function renderBasket() {
 
   basketItems.innerHTML = "";
   basketCalculation.innerHTML = "";
+
+  updateBasketCount();
 
   if (basket.length === 0) {
     basketItems.innerHTML = `
@@ -230,7 +251,6 @@ function increaseAmount(basketIndex) {
 
 
 // Diese Funktion verringert die Anzahl eines Gerichts um eins.
-// Wenn die Anzahl null erreicht, wird das Gericht entfernt.
 function decreaseAmount(basketIndex) {
   basket[basketIndex].amount--;
 
@@ -272,35 +292,19 @@ function formatPrice(price) {
 }
 
 
-// Diese Funktion öffnet oder schließt den Warenkorb auf dem Handy.
+// Diese Funktion öffnet oder schließt den Warenkorb.
 function toggleBasket() {
   let basketElement = document.getElementById("basket");
 
-  if (basketElement.classList.contains("showBasket")) {
-    closeBasket();
-  } else {
-    openBasket();
-  }
+  basketElement.classList.toggle("showBasket");
 }
 
 
-// Diese Funktion öffnet den Warenkorb und dunkelt den Hintergrund ab.
-function openBasket() {
-  let basketElement = document.getElementById("basket");
-  let basketBackdrop = document.getElementById("basketBackdrop");
-
-  basketElement.classList.add("showBasket");
-  basketBackdrop.classList.add("showBackdrop");
-}
-
-
-// Diese Funktion schließt den Warenkorb und entfernt den Hintergrund.
+// Diese Funktion schließt den Warenkorb.
 function closeBasket() {
   let basketElement = document.getElementById("basket");
-  let basketBackdrop = document.getElementById("basketBackdrop");
 
   basketElement.classList.remove("showBasket");
-  basketBackdrop.classList.remove("showBackdrop");
 }
 
 

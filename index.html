@@ -33,6 +33,7 @@
 
         <section class="restaurantInformation">
             <div class="restaurantInformationContent">
+
                 <div class="restaurantName">
                     <h1>Patrick's Pizza</h1>
                     <span>★ 4,1 (317)</span>
@@ -41,6 +42,7 @@
                 <p>
                     Leckere Pizza, frische Zutaten und guter Geschmack.
                 </p>
+
             </div>
         </section>
 
@@ -59,8 +61,8 @@
                 </div>
 
                 <div class="basket" id="basket">
-                    <button class="basketCloseButton" type="button" onclick="closeBasket()"
-                        aria-label="Warenkorb schließen">
+
+                    <button class="basketCloseButton" type="button" onclick="closeBasket()">
                         ×
                     </button>
 
@@ -69,6 +71,7 @@
                     <div id="basket-items"></div>
 
                     <div id="basket-calculation"></div>
+
                 </div>
 
             </div>
@@ -79,6 +82,7 @@
 
     <footer class="footer">
         <div class="footerContent">
+
             <img class="footerLogo" src="./assets/icons/logo.png" alt="Bestell App">
 
             <p>© 2026 Patrick's Pizza</p>
@@ -87,12 +91,12 @@
                 <a href="#">Impressum</a>
                 <a href="#">Datenschutz</a>
             </div>
+
         </div>
     </footer>
 
-    <div class="basketBackdrop" id="basketBackdrop" onclick="closeBasket()"></div>
-
     <nav class="mobileNavigation">
+
         <a class="navigationButton activeButton" href="#">
             <img src="./assets/icons/Homebutton.png" alt="Startseite">
         </a>
@@ -105,14 +109,19 @@
             <img src="./assets/icons/orders.png" alt="Bestellungen">
         </a>
 
-        <a class="navigationButton" href="#" onclick="toggleBasket(); return false;">
+        <a class="navigationButton basketNavigationButton" href="#" onclick="toggleBasket(); return false;">
             <img src="./assets/icons/basket.png" alt="Warenkorb">
+
+            <span class="basketCount" id="basket-count">
+                0
+            </span>
         </a>
+
     </nav>
 
     <dialog class="orderDialog" id="orderDialog">
-        <button class="closeDialogButton" type="button" onclick="closeOrderDialog()"
-            aria-label="Bestellfenster schließen">
+
+        <button class="closeDialogButton" type="button" onclick="closeOrderDialog()">
             ×
         </button>
 
@@ -128,6 +137,7 @@
         <button class="dialogButton" type="button" onclick="closeOrderDialog()">
             Schließen
         </button>
+
     </dialog>
 
 </body>
