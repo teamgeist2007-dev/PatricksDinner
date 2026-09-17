@@ -272,10 +272,43 @@ function formatPrice(price) {
 }
 
 
+// Diese Funktion öffnet oder schließt den Warenkorb auf dem Handy.
+function toggleBasket() {
+  let basketElement = document.getElementById("basket");
+
+  if (basketElement.classList.contains("showBasket")) {
+    closeBasket();
+  } else {
+    openBasket();
+  }
+}
+
+
+// Diese Funktion öffnet den Warenkorb und dunkelt den Hintergrund ab.
+function openBasket() {
+  let basketElement = document.getElementById("basket");
+  let basketBackdrop = document.getElementById("basketBackdrop");
+
+  basketElement.classList.add("showBasket");
+  basketBackdrop.classList.add("showBackdrop");
+}
+
+
+// Diese Funktion schließt den Warenkorb und entfernt den Hintergrund.
+function closeBasket() {
+  let basketElement = document.getElementById("basket");
+  let basketBackdrop = document.getElementById("basketBackdrop");
+
+  basketElement.classList.remove("showBasket");
+  basketBackdrop.classList.remove("showBackdrop");
+}
+
+
 // Diese Funktion öffnet das Bestellfenster und leert den Warenkorb.
 function openOrderDialog() {
   let orderDialog = document.getElementById("orderDialog");
 
+  closeBasket();
   orderDialog.showModal();
 
   basket = [];
@@ -293,6 +326,6 @@ function closeOrderDialog() {
 }
 
 
-// Diese beiden Funktionen werden beim Laden der Seite ausgeführt.
+// Diese Funktionen werden beim Laden der Seite ausgeführt.
 renderDishes();
 renderBasket();
