@@ -1,36 +1,3 @@
-const dishes = [
-  {
-    name: "Pizza Margherita",
-    description: "Mit Tomatensoße, Mozzarella und Basilikum",
-    price: 8.90,
-    image: "./assets/img/Pizza Margherita.png"
-  },
-  {
-    name: "Pizza Salami",
-    description: "Mit Tomatensoße, Salami und geriebenen Käse",
-    price: 11.90,
-    image: "./assets/img/Pizza Salami.png"
-  },
-  {
-    name: "Pizza Funghi",
-    description: "Mit Tomatensoße, frischen Champignons und geriebenen Käse",
-    price: 9.90,
-    image: "./assets/img/Pizza Funghi.png"
-  },
-  {
-    name: "Pizza Diavola",
-    description: "Mit Tomatensoße, Salami, Chili und Jalapeños",
-    price: 12.90,
-    image: "./assets/img/Pizza Diavola.png"
-  },
-  {
-    name: "Pizza Quattro Formaggi",
-    description: "Mit Tomatensoße, Mozzarella, Gorgonzola, Parmesan und Fontina",
-    price: 10.90,
-    image: "./assets/img/Pizza Quattro Formaggi.png"
-  }
-];
-
 let basket = [];
 
 
@@ -50,32 +17,12 @@ function renderDishes() {
       buttonClass = "addButton addedButton";
     }
 
-    dishList.innerHTML += `
-      <div class="dishCard">
-        <img
-          class="dishImage"
-          src="${dishes[i].image}"
-          alt="${dishes[i].name}"
-        >
-
-        <div class="dishInfo">
-          <h3>${dishes[i].name}</h3>
-          <p>${dishes[i].description}</p>
-
-          <strong class="dishPrice">
-            ${formatPrice(dishes[i].price)}
-          </strong>
-        </div>
-
-        <button
-          class="${buttonClass}"
-          type="button"
-          onclick="addToBasket(${i})"
-        >
-          ${buttonText}
-        </button>
-      </div>
-    `;
+    dishList.innerHTML += getDishTemplate(
+      dishes[i],
+      i,
+      buttonText,
+      buttonClass
+    );
   }
 }
 
@@ -89,25 +36,6 @@ function getDishAmount(dishIndex) {
   }
 
   return 0;
-}
-
-
-// Diese Funktion zeigt die Produktanzahl am Warenkorb-Symbol.
-function updateBasketCount() {
-  let basketCount = document.getElementById("basket-count");
-  let totalAmount = 0;
-
-  for (let i = 0; i < basket.length; i++) {
-    totalAmount = totalAmount + basket[i].amount;
-  }
-
-  basketCount.innerHTML = totalAmount;
-
-  if (totalAmount > 0) {
-    basketCount.classList.add("showBasketCount");
-  } else {
-    basketCount.classList.remove("showBasketCount");
-  }
 }
 
 
@@ -145,103 +73,51 @@ function renderBasket() {
   updateBasketCount();
 
   if (basket.length === 0) {
-    basketItems.innerHTML = `
-      <div class="emptyBasket">
-        Dein Warenkorb ist noch leer.
-      </div>
-    `;
-
+    basketItems.innerHTML = getEmptyBasketTemplate();
     return;
   }
 
+  renderBasketItems();
+  renderBasketCalculation();
+}
+
+
+// Diese Funktion zeigt alle Gerichte im Warenkorb an.
+function renderBasketItems() {
+  let basketItems = document.getElementById("basket-items");
+
   for (let i = 0; i < basket.length; i++) {
     let dish = dishes[basket[i].dishIndex];
-    let itemPrice = dish.price * basket[i].amount;
+    let amount = basket[i].amount;
+    let itemPrice = dish.price * amount;
 
-    basketItems.innerHTML += `
-      <div class="basketItem">
-        <div class="basketItemContent">
-
-          <h3 class="basketItemName">
-            ${basket[i].amount} x ${dish.name}
-          </h3>
-
-          <div class="basketItemBottom">
-
-            <div class="amountButtons">
-              <button
-                class="amountButton"
-                type="button"
-                onclick="decreaseAmount(${i})"
-              >
-                -
-              </button>
-
-              <span>${basket[i].amount}</span>
-
-              <button
-                class="amountButton"
-                type="button"
-                onclick="increaseAmount(${i})"
-              >
-                +
-              </button>
-
-              <button
-                class="deleteButton"
-                type="button"
-                onclick="deleteDish(${i})"
-              >
-                Löschen
-              </button>
-            </div>
-
-            <span class="basketPrice">
-              ${formatPrice(itemPrice)}
-            </span>
-
-          </div>
-        </div>
-      </div>
-    `;
+    basketItems.innerHTML += getBasketItemTemplate(
+      dish,
+      i,
+      amount,
+      itemPrice
+    );
   }
+}
 
+
+// Diese Funktion zeigt die Berechnung im Warenkorb an.
+function renderBasketCalculation() {
+  let basketCalculation = document.getElementById("basket-calculation");
   let subtotal = calculateSubtotal();
   let deliveryFee = 4.99;
   let total = subtotal + deliveryFee;
 
-  basketCalculation.innerHTML = `
-    <div class="basketCalculation">
-
-      <div class="calculationRow">
-        <span>Subtotal</span>
-        <span>${formatPrice(subtotal)}</span>
-      </div>
-
-      <div class="calculationRow">
-        <span>Delivery fee</span>
-        <span>${formatPrice(deliveryFee)}</span>
-      </div>
-
-      <div class="calculationRow totalRow">
-        <span>Total</span>
-        <span>${formatPrice(total)}</span>
-      </div>
-
-      <button
-        class="buyButton"
-        type="button"
-        onclick="openOrderDialog()"
-      >
-        Buy now (${formatPrice(total)})
-      </button>
-
-    </div>
-  `;
+  basketCalculation.innerHTML =
+    getBasketCalculationTemplate(
+      subtotal,
+      deliveryFee,
+      total
+    );
 }
 
 
-// Diese Funktion erhöht die Anzahl eines Gerichts um eins.
+// Diese Funktion erhöht die Anzahl eines Gerichts.
 function increaseAmount(basketIndex) {
   basket[basketIndex].amount++;
 
@@ -250,7 +126,7 @@ function increaseAmount(basketIndex) {
 }
 
 
-// Diese Funktion verringert die Anzahl eines Gerichts um eins.
+// Diese Funktion verringert die Anzahl eines Gerichts.
 function decreaseAmount(basketIndex) {
   basket[basketIndex].amount--;
 
@@ -263,7 +139,7 @@ function decreaseAmount(basketIndex) {
 }
 
 
-// Diese Funktion entfernt ein Gericht vollständig aus dem Warenkorb.
+// Diese Funktion entfernt ein Gericht aus dem Warenkorb.
 function deleteDish(basketIndex) {
   basket.splice(basketIndex, 1);
 
@@ -272,27 +148,47 @@ function deleteDish(basketIndex) {
 }
 
 
-// Diese Funktion berechnet die Zwischensumme aller Gerichte.
+// Diese Funktion berechnet die Zwischensumme.
 function calculateSubtotal() {
   let subtotal = 0;
 
   for (let i = 0; i < basket.length; i++) {
     let dish = dishes[basket[i].dishIndex];
+    let amount = basket[i].amount;
 
-    subtotal = subtotal + dish.price * basket[i].amount;
+    subtotal = subtotal + dish.price * amount;
   }
 
   return subtotal;
 }
 
 
-// Diese Funktion wandelt eine Zahl in einen deutschen Preis um.
+// Diese Funktion zeigt die Anzahl am Warenkorb-Symbol.
+function updateBasketCount() {
+  let basketCount = document.getElementById("basket-count");
+  let totalAmount = 0;
+
+  for (let i = 0; i < basket.length; i++) {
+    totalAmount = totalAmount + basket[i].amount;
+  }
+
+  basketCount.innerHTML = totalAmount;
+
+  if (totalAmount > 0) {
+    basketCount.classList.add("showBasketCount");
+  } else {
+    basketCount.classList.remove("showBasketCount");
+  }
+}
+
+
+// Diese Funktion formatiert einen Preis.
 function formatPrice(price) {
   return price.toFixed(2).replace(".", ",") + " €";
 }
 
 
-// Diese Funktion öffnet oder schließt den Warenkorb.
+// Diese Funktion öffnet oder schließt den mobilen Warenkorb.
 function toggleBasket() {
   let basketElement = document.getElementById("basket");
 
@@ -300,7 +196,7 @@ function toggleBasket() {
 }
 
 
-// Diese Funktion schließt den Warenkorb.
+// Diese Funktion schließt den mobilen Warenkorb.
 function closeBasket() {
   let basketElement = document.getElementById("basket");
 
@@ -308,7 +204,7 @@ function closeBasket() {
 }
 
 
-// Diese Funktion öffnet das Bestellfenster und leert den Warenkorb.
+// Diese Funktion öffnet die Bestellbestätigung.
 function openOrderDialog() {
   let orderDialog = document.getElementById("orderDialog");
 
@@ -322,7 +218,7 @@ function openOrderDialog() {
 }
 
 
-// Diese Funktion schließt das Bestellfenster.
+// Diese Funktion schließt die Bestellbestätigung.
 function closeOrderDialog() {
   let orderDialog = document.getElementById("orderDialog");
 
